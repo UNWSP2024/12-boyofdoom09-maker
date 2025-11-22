@@ -1,5 +1,4 @@
-language-python
- Copy code
+
 import tkinter as tk
 from tkinter import messagebox
 
