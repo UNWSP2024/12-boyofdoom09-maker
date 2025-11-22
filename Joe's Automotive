@@ -1,0 +1,46 @@
+language-python
+ Copy code
+import tkinter as tk
+from tkinter import messagebox
+
+def calculate_total():
+    total = 0
+    if oil_change_var.get():
+        total += 30.00
+    if lube_job_var.get():
+        total += 20.00
+    if radiator_flush_var.get():
+        total += 40.00
+    if transmission_fluid_var.get():
+        total += 100.00
+    if inspection_var.get():
+        total += 35.00
+    if muffler_replacement_var.get():
+        total += 200.00
+    if tire_rotation_var.get():
+        total += 20.00
+    
+    messagebox.showinfo("Total Charges", f"Total Charges: ${total:.2f}")
+
+app = tk.Tk()
+app.title("Joe's Automotive Services")
+
+oil_change_var = tk.BooleanVar()
+lube_job_var = tk.BooleanVar()
+radiator_flush_var = tk.BooleanVar()
+transmission_fluid_var = tk.BooleanVar()
+inspection_var = tk.BooleanVar()
+muffler_replacement_var = tk.BooleanVar()
+tire_rotation_var = tk.BooleanVar()
+
+tk.Checkbutton(app, text="Oil Change - $30.00", variable=oil_change_var).pack(anchor='w')
+tk.Checkbutton(app, text="Lube Job - $20.00", variable=lube_job_var).pack(anchor='w')
+tk.Checkbutton(app, text="Radiator Flush - $40.00", variable=radiator_flush_var).pack(anchor='w')
+tk.Checkbutton(app, text="Transmission Fluid - $100.00", variable=transmission_fluid_var).pack(anchor='w')
+tk.Checkbutton(app, text="Inspection - $35.00", variable=inspection_var).pack(anchor='w')
+tk.Checkbutton(app, text="Muffler Replacement - $200.00", variable=muffler_replacement_var).pack(anchor='w')
+tk.Checkbutton(app, text="Tire Rotation - $20.00", variable=tire_rotation_var).pack(anchor='w')
+
+tk.Button(app, text="Calculate Total", command=calculate_total).pack()
+
+app.mainloop()
