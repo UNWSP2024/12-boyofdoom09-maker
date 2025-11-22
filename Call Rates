@@ -1,0 +1,38 @@
+
+import tkinter as tk
+from tkinter import messagebox
+
+def calculate_charge():
+    try:
+        minutes = float(entry_minutes.get())
+        if rate_var.get() == "Daytime":
+            charge = minutes * 0.02
+        elif rate_var.get() == "Evening":
+            charge = minutes * 0.12
+        elif rate_var.get() == "Off-Peak":
+            charge = minutes * 0.05
+        else:
+            charge = 0
+        
+        messagebox.showinfo("Charge Information", f"The charge for the call is: ${charge:.2f}")
+    except ValueError:
+        messagebox.showerror("Input Error", "Please enter a valid number of minutes.")
+
+app = tk.Tk()
+app.title("Long-Distance Call Charge Calculator")
+
+rate_var = tk.StringVar(value="Daytime")
+
+tk.Label(app, text="Select Rate Category:").pack()
+
+tk.Radiobutton(app, text="Daytime (6:00 A.M. - 5:59 P.M.)", variable=rate_var, value="Daytime").pack()
+tk.Radiobutton(app, text="Evening (6:00 P.M. - 11:59 P.M.)", variable=rate_var, value="Evening").pack()
+tk.Radiobutton(app, text="Off-Peak (Midnight - 5:59 A.M.)", variable=rate_var, value="Off-Peak").pack()
+
+tk.Label(app, text="Enter number of minutes:").pack()
+entry_minutes = tk.Entry(app)
+entry_minutes.pack()
+
+tk.Button(app, text="Calculate Charge", command=calculate_charge).pack()
+
+app.mainloop()
